@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container { padding: 20px; font-family: Arial, sans-serif; }
+        .header { color: #333; font-size: 24px; margin-bottom: 20px; }
+        .alert { background: #fff3cd; padding: 15px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="header">Price Alert</h1>
+        <div class="alert">
+            <p><strong>Symbol:</strong> {{symbol}}</p>
+            <p><strong>Current Price:</strong> ${{currentPrice}}</p>
+            <p><strong>Alert Type:</strong> {{alertType}}</p>
+            <p><strong>Target Price:</strong> ${{targetPrice}}</p>
+            <p><strong>Time:</strong> {{time}}</p>
+        </div>
+    </div>
+</body>
+</html>

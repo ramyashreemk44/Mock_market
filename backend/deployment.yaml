@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mockmarket-backend
+  namespace: mockmarket
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mockmarket
+  template:
+    metadata:
+      labels:
+        app: mockmarket
+    spec:
+      containers:
+      - name: mockmarket-api
+        image: gcr.io/mock-market-444508/mockmarket-backend:v2
+        ports:
+        - containerPort: 5001
+        env:
+        - name: PORT
+          value: "5001"
+        - name: NODE_ENV
+          value: "production"
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: mockmarket-secrets
+              key: mongodb-uri
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: mockmarket-secrets
+              key: jwt-secret
+        - name: alphaVantageApiKey
+          valueFrom:
+            secretKeyRef:
+              name: mockmarket-secrets
+              key: alpha-vantage-key
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5001
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5001
+          initialDelaySeconds: 30
+          periodSeconds: 30

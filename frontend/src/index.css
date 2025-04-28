@@ -1,0 +1,28 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply h-full bg-gray-50;
+  }
+  
+  body {
+    @apply h-full overflow-x-hidden;
+  }
+  
+  #root {
+    @apply h-full;
+  }
+}
+
+@layer components {
+  .sidebar-link {
+    @apply flex items-center space-x-3 px-6 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600;
+  }
+
+  .sidebar-link.active {
+    @apply bg-blue-50 text-blue-600 border-r-4 border-blue-600;
+  }
+}

@@ -1,0 +1,7 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: mockmarket-cert
+spec:
+  domains:
+    - api.mockmarket.com  # Replace with your domain

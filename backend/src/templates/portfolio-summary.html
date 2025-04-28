@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container { padding: 20px; font-family: Arial, sans-serif; }
+        .header { color: #333; font-size: 24px; margin-bottom: 20px; }
+        .summary { background: #f8f9fa; padding: 15px; border-radius: 5px; }
+        .holdings { margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        .positive { color: #28a745; }
+        .negative { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="header">Portfolio Summary</h1>
+        <div class="summary">
+            <p><strong>Total Value:</strong> ${{totalValue}}</p>
+            <p><strong>Cash Balance:</strong> ${{cashBalance}}</p>
+            <p><strong>Day's Change:</strong> 
+                <span class="{{#if isDayChangePositive}}positive{{else}}negative{{/if}}">
+                    ${{dayChange}} ({{dayChangePercent}}%)
+                </span>
+            </p>
+        </div>
+        <div class="holdings">
+            <h2>Holdings</h2>
+            <table>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Shares</th>
+                    <th>Current Price</th>
+                    <th>Market Value</th>
+                    <th>Gain/Loss</th>
+                </tr>
+                {{#each holdings}}
+                <tr>
+                    <td>{{symbol}}</td>
+                    <td>{{shares}}</td>
+                    <td>${{currentPrice}}</td>
+                    <td>${{marketValue}}</td>
+                    <td class="{{#if isGainPositive}}positive{{else}}negative{{/if}}">
+                        ${{gainLoss}} ({{gainLossPercent}}%)
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
